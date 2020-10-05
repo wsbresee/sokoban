@@ -46,13 +46,20 @@ class BFSAgent(Agent):
         iterations = 0
         bestNode = None
         # YOUR CODE HERE
+        queue = [Node(state, None, None)]
+        visited = []
+        while queue and iterations < maxIterations:
+            bestNode = queue.pop(0)
+            if bestNode.checkWin():
+                break
+            for child in bestNode.getChildren():
+                if child.getHash() not in visited:
+                    visited.append(child.getHash())
+                    queue.append(child)
+            iterations += 1
 
-
-
-
-        return []                       #remove me
-        #return bestNode.getActions()   #uncomment me
-
+        #return []                       #remove me
+        return bestNode.getActions()   #uncomment me
 
 
 # DFS Agent Code
@@ -63,12 +70,20 @@ class DFSAgent(Agent):
         bestNode = None
 
         # YOUR CODE HERE
+        stack = [Node(state, None, None)]
+        visited = []
+        while stack and iterations < maxIterations:
+            bestNode = stack.pop()
+            if bestNode.checkWin():
+                break
+            for child in bestNode.getChildren():
+                if child.getHash() not in visited:
+                    visited.append(child.getHash())
+                    stack.append(child)
+            iterations += 1
 
-
-
-
-        return []                       #remove me
-        #return bestNode.getActions()   #uncomment me
+        #return []                       #remove me
+        return bestNode.getActions()   #uncomment me
 
 
 
